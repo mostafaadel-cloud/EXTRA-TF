@@ -1,0 +1,16 @@
+steps:
+
+  - id: 'initialization'
+    name: 'hashicorp/terraform'
+    entrypoint: 'sh'
+    args: ['-c','terraform init'] 
+
+    
+  - id: 'apply'
+    name: 'hashicorp/terraform'
+    entrypoint: 'sh'
+    args: ['-c','terraform apply --auto-approve'] 
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+

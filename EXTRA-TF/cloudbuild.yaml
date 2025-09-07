@@ -1,0 +1,25 @@
+steps:
+  - id: 'initialization'
+    name: 'hashicorp/terraform'
+    entrypoint: 'sh'
+    args: ['-c','terraform init'] 
+
+  - id: 'plan'
+    name: 'hashicorp/terraform'
+    entrypoint: 'sh'
+    args: ['-c','terraform plan'] 
+  
+
+  - id: 'trigger-approval-pipeline'
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        gcloud config set project tf-project-467307
+        gcloud builds triggers run tf-apply \
+          --branch=main \
+          --region=me-central2
+options:
+  logging: CLOUD_LOGGING_ONLY
+            
