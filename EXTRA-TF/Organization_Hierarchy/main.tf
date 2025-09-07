@@ -48,22 +48,22 @@ resource "google_folder" "datalake_folder" {
 
 resource "google_folder" "infra_linux_subfolder" {
   display_name = "EX-INFRA-Linux"
-  parent       = google_folder.infrastructure_folder.id
+  parent       = google_folder.infrastructure_folder.name
 }
 
 resource "google_folder" "infra_windows_subfolder" {
   display_name = "EX-INFRA-Windows"
-  parent       = google_folder.infrastructure_folder.id
+  parent       = google_folder.infrastructure_folder.name
 }
 
 resource "google_folder" "datalake_cmn_subfolder" {
   display_name = "EX-Datalake-CMN"
-  parent       = google_folder.datalake_folder.id
+  parent       = google_folder.datalake_folder.name
 }
 
 resource "google_folder" "datalink_prod_subfolder" {
   display_name = "EX-Datalake-Prod"
-  parent       = google_folder.datalake_folder.id
+  parent       = google_folder.datalake_folder.name
 }
 
 ########################################## Projects under Monitoring Folder ########################################################################
