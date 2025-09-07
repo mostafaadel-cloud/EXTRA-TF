@@ -15,12 +15,12 @@ variable "scoping_project" {
 
 
 variable "host_project_id" {
-  default = "extra-networking-project"
+  default = "network_project"
 }
 
-variable "service_project_id" {
-  default = "extra-edu-pr-project"
-}
+# variable "service_project_id" {
+#   default = "extra-edu-pr-project"
+# }
 
 variable "service_project_number" {
   default = "306250913508"

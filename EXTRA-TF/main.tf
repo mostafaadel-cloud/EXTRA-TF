@@ -100,7 +100,6 @@ module "iam_runner" {
   source    = "./IAM"
   runner_sa = "971573762455-compute@developer.gserviceaccount.com"
   application_projects = toset([
-    module.Org_Hierarcy.monitoring_project,
     module.Org_Hierarcy.network_project,
     module.Org_Hierarcy.operational_services_project,
     module.Org_Hierarcy.infra_linux_qa_project,
@@ -108,9 +107,9 @@ module "iam_runner" {
     module.Org_Hierarcy.infra_linux_dr_project,
     module.Org_Hierarcy.infra_linux_tsr_project,
     module.Org_Hierarcy.datalake_cmn_iac_project,
-    module.Org_Hierarcy.datalake_prod_prod_project,
+    module.Org_Hierarcy.datalake_prod_prod_project
   ])
-  scoping_project = module.Org_Hierarcy.datalake_cmn_iac_project
+  scoping_project = module.Org_Hierarcy.monitoring_project
 }
 
 #===============================================================================================================================
