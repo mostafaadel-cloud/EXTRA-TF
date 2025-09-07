@@ -1,22 +1,22 @@
 ############################################################ Folders #####################################################################
-output "health_folder" {
-  value = google_folder.health_folder.id
+output "monitoring_folder" {
+  value = google_folder.monitoring_folder.id
 }
 
-output "education_folder" {
-  value = google_folder.education_folder.id
+output "terraform_folder" {
+  value = google_folder.terraform_folder.id
 }
 
-output "business_folder" {
-  value = google_folder.business_folder.id
+output "infrastructure_folder" {
+  value = google_folder.infrastructure_folder.id
 }
 
-output "networking_folder" {
-  value = google_folder.networking_folder.id
+output "network_folder" {
+  value = google_folder.network_folder.id
 }
 
-output "logging_folder" {
-  value = google_folder.logging_folder.id
+output "operational_services_folder" {
+  value = google_folder.operational_services_folder.id
 }
 
 ############################################################ Project #####################################################################
