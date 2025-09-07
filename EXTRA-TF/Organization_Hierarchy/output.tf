@@ -61,7 +61,7 @@ output "infra_linux_qa_project" {
   value = google_project.infra_linux_qa_project.project_id
 }
 
-output "logging_and_monitoring_project" {
-  value = google_project.logging_and_monitoring_project.project_id
+output "datalake_cmn_iac_project" {
+  value = google_project.datalake_cmn_iac_project.project_id
 }
 

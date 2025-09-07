@@ -4,7 +4,7 @@ variable "infra_linux_qa_project" {
 }
 
 
-variable "logging_and_monitoring_project" {
+variable "datalake_cmn_iac_project" {
   description = "logging_project"
   type = string
 }

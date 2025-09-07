@@ -3,7 +3,7 @@
 # LOG Bucket
 
 resource "google_logging_project_bucket_config" "logging" {
-    project    = var.logging_and_monitoring_project
+    project    = var.datalake_cmn_iac_project
     location  = var.location
     retention_days = 90
     bucket_id = "centralized-logging"
@@ -18,7 +18,7 @@ resource "google_logging_organization_sink" "org_sink" {
   description = "Organization Sink"
   org_id = var.org_id
 
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 #===============================================================================================================================
@@ -29,7 +29,7 @@ resource "google_logging_project_sink" "infra_linux_qa_project" {
   description = "network project Sink"
   project = var.infra_linux_qa_project
 
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 
 }
 
@@ -40,21 +40,21 @@ resource "google_logging_project_sink" "monitoring_project" {
   name   = "med-pr-project-sink"
   description = "med-pr-project-sink"
   project = var.monitoring_project
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 resource "google_logging_project_sink" "med_dev_project" {
   name   = "med-dev-project-sink"
   description = "med-dev-project-sink"
   project = var.med_dev_project
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 resource "google_logging_project_sink" "med_test_project" {
   name   = "med-test-project-sink"
   description = "med-test-project-sink"
   project = var.med_test_project
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 #===============================================================================================================================
@@ -64,21 +64,21 @@ resource "google_logging_project_sink" "infra_linux_qa_project" {
   name   = "edu-pr-project-sink"
   description = "edu-pr-project-sink"
   project = var.infra_linux_qa_project
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 resource "google_logging_project_sink" "edu_dev_project" {
   name   = "edu-dev-project-sink"
   description = "edu-dev-project-sink"
   project = var.edu_dev_project
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 resource "google_logging_project_sink" "edu_test_project" {
   name   = "edu-test-project-sink"
   description = "edu-test-project-sink"
   project = var.edu_test_project
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 #===============================================================================================================================
@@ -88,7 +88,7 @@ resource "google_logging_project_sink" "operational_services_project" {
   name   = "bus-pr-project-sink"
   description = "bus-pr-project-sink"
   project = var.operational_services_project
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 
@@ -96,14 +96,14 @@ resource "google_logging_project_sink" "bus_dev_project" {
   name   = "bus-dev-project-sink"
   description = "bus-dev-project-sink"
   project = var.bus_dev_project
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 resource "google_logging_project_sink" "bus_test_project" {
   name   = "bus-test-project-sink"
   description = "bus-test-project-sink"
   project = var.bus_test_project
-  destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
+  destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
 
@@ -112,7 +112,7 @@ resource "google_logging_project_sink" "bus_test_project" {
 # Permissions
 
 resource "google_project_iam_binding" "log_Writer" {
-  project = var.logging_and_monitoring_project
+  project = var.datalake_cmn_iac_project
   role = "roles/logging.logWriter"
 
   members = [
@@ -131,7 +131,7 @@ resource "google_project_iam_binding" "log_Writer" {
 }
 
 resource "google_project_iam_binding" "bucket_Writer" {
-  project = var.logging_and_monitoring_project
+  project = var.datalake_cmn_iac_project
   role = "roles/logging.bucketWriter"
 
   members = [
@@ -171,7 +171,7 @@ locals {
 
 resource "google_monitoring_monitored_project" "projects_metric_scopes" {
   for_each      = local.metric_scopes
-  metrics_scope = "locations/global/metricsScopes/${var.logging_and_monitoring_project}"
-  name          = "locations/global/metricsScopes/${var.logging_and_monitoring_project}/projects/${each.value}"
+  metrics_scope = "locations/global/metricsScopes/${var.datalake_cmn_iac_project}"
+  name          = "locations/global/metricsScopes/${var.datalake_cmn_iac_project}/projects/${each.value}"
 }
 

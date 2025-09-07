@@ -59,7 +59,7 @@ module "VPCs" {
 module "APIs" {
   source                         = "./APIs"
   infra_linux_qa_project                = module.Org_Hierarcy.infra_linux_qa_project
-  logging_and_monitoring_project = module.Org_Hierarcy.logging_and_monitoring_project
+  datalake_cmn_iac_project = module.Org_Hierarcy.datalake_cmn_iac_project
 
   application_projects = toset([
     module.Org_Hierarcy.monitoring_project,
@@ -82,7 +82,7 @@ module "APIs" {
 module "Centralized_Logging" {
   source                         = "./Centralized_Logging"
   org_id                         = local.org_id
-  logging_and_monitoring_project = module.Org_Hierarcy.logging_and_monitoring_project
+  datalake_cmn_iac_project = module.Org_Hierarcy.datalake_cmn_iac_project
   location                       = local.region
   infra_linux_qa_project                = module.Org_Hierarcy.infra_linux_qa_project
   monitoring_project                 = module.Org_Hierarcy.monitoring_project
@@ -115,7 +115,7 @@ module "iam_runner" {
     module.Org_Hierarcy.bus_test_project,
     module.Org_Hierarcy.infra_linux_qa_project,
   ])
-  scoping_project = module.Org_Hierarcy.logging_and_monitoring_project
+  scoping_project = module.Org_Hierarcy.datalake_cmn_iac_project
 }
 
 #===============================================================================================================================

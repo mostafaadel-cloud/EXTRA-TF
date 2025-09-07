@@ -102,7 +102,7 @@ resource "google_project" "infra_linux_qa_project" {
   billing_account = var.billing_account
 }
 
-# Add missing References
+# @@ Add missing References
 resource "google_project" "infra_linux_prd_project" {
   name       = "EX-INFRA-LINUX-PRD"
   project_id = "ex-infra-linux-prd"
@@ -110,7 +110,7 @@ resource "google_project" "infra_linux_prd_project" {
   billing_account = var.billing_account
 }
 
-# Add missing References
+# @@ Add missing References
 resource "google_project" "infra_linux_dr_project" {
   name       = "EX-INFRA-LINUX-DR"
   project_id = "ex-infra-linux-dr"
@@ -118,29 +118,29 @@ resource "google_project" "infra_linux_dr_project" {
   billing_account = var.billing_account
 }
 
-# Add missing References
+# @@ Add missing References
 resource "google_project" "infra_linux_tsr_project" {
   name       = "EX-INFRA-LINUX-TSR"
   project_id = "ex-infra-linux-tsr"
   folder_id  = google_folder.infra_linux_subfolder.id
   billing_account = var.billing_account
 }
+# EX-Datalake-CMN-IAC
+# EX-Datalake-Prod-PROD
+#################################### Projects under Datalake CMN Subfolder ########################################################################
 
-#################################### Logging Project ########################################################################
-
-resource "google_project" "logging_and_monitoring_project" {
-  name       = "extra-Log-Mon-project"
-  project_id = "extra-log-mon-project"
-  folder_id  = google_folder.operational_services_folder.id
+resource "google_project" "datalake_cmn_iac_project" {
+  name       = "EX-Datalake-CMN-IAC"
+  project_id = "ex-datalake-cmn-iac"
+  folder_id  = google_folder.datalake_cmn_subfolder.id
   billing_account = var.billing_account
 }
-      
-resource "google_folder" "parent_folder" {
-  display_name = "ParentFolder"
-  parent       = "organizations/your_organization_id" # Replace with your organization ID
-}
 
-resource "google_folder" "child_folder" {
-  display_name = "ChildFolder"
-  parent       = google_folder.parent_folder.id # References the ID of the newly created parent folder
+#################################### Projects under Datalake Prod Subfolder ########################################################################
+# @@ Add missing References
+resource "google_project" "datalake_prod_prod_project" {
+  name       = "EX-Datalake-Prod-PROD"
+  project_id = "ex-datalake-prod-prod"
+  folder_id  = google_folder.datalake_cmn_subfolder.id
+  billing_account = var.billing_account
 }

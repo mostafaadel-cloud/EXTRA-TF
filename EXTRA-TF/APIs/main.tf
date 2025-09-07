@@ -13,7 +13,7 @@ locals {
 }
 
  resource "google_project_service" "logging_project_APIs" {
-  project            = var.logging_and_monitoring_project
+  project            = var.datalake_cmn_iac_project
   for_each           = toset(local.logging_project_APIs)
   service            = each.key
   disable_on_destroy = false
