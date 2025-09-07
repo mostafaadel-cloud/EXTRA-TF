@@ -39,7 +39,7 @@ terraform {
 #===============================================================================================================================
 
 module "Org_Hierarcy" {
-  source          = "./Organization_Hierarchy"
+  source          = "./Modules/Organization_Hierarchy"
   org_id          = local.org_id
   billing_account = var.billing_account
 }
@@ -48,7 +48,7 @@ module "Org_Hierarcy" {
 #===============================================================================================================================
 
 module "VPCs" {
-  source      = "./Networking/VPCs"
+  source      = "./Modules/Networking/VPCs"
   project_id  = module.Org_Hierarcy.infra_linux_qa_project
   vpc_configs = var.vpc_configs
 }
@@ -57,9 +57,9 @@ module "VPCs" {
 #===============================================================================================================================
 # @@ Change app projects
 module "APIs" {
-  source                   = "./APIs"
-  network_project   = module.Org_Hierarcy.network_project
-  monitoring_project = module.Org_Hierarcy.monitoring_project
+  source              = "./Modules/APIs"
+  network_project     = module.Org_Hierarcy.network_project
+  monitoring_project  = module.Org_Hierarcy.monitoring_project
 
   application_projects = toset([
     module.Org_Hierarcy.operational_services_project,
@@ -78,7 +78,7 @@ module "APIs" {
 #===============================================================================================================================
 # @@ Change app projects
 module "Centralized_Logging" {
-  source                          =  "./Centralized_Logging"
+  source                          =  "./Modules/Centralized_Logging"
   org_id                          =  local.org_id
   location                        =  local.region
   monitoring_project              =  module.Org_Hierarcy.monitoring_project
@@ -97,7 +97,7 @@ module "Centralized_Logging" {
 #===============================================================================================================================
 # @@ Change app projects and service account
 module "iam_runner" {
-  source    = "./IAM"
+  source    = "./Modules/IAM"
   runner_sa = "971573762455-compute@developer.gserviceaccount.com"
   application_projects = toset([
     module.Org_Hierarcy.network_project,
@@ -116,7 +116,7 @@ module "iam_runner" {
 #===============================================================================================================================
 
 module "Shared_VPC" {
-  source          = "./Networking/shared vpc"
+  source          = "./Modules/Networking/shared vpc"
   infra_linux_qa_project = module.Org_Hierarcy.infra_linux_qa_project
   depends_on      = [module.APIs]
 }
@@ -125,7 +125,7 @@ module "Shared_VPC" {
 #===============================================================================================================================
 # @@ Change VPCs
 module "firewalls" {
-  source          = "./Networking/firewalls"
+  source          = "./Modules/Networking/firewalls"
   infra_linux_qa_project = module.Org_Hierarcy.infra_linux_qa_project
   hybrid-vpc                    = "extra-hybrid-connectivity-vpc"
   extra-business-vpc             = "extra-business-vpc"
@@ -141,7 +141,7 @@ module "firewalls" {
 # @@ Revise peering requirement
 # VPC Peering Module
 module "vpc-peering" {
-  source                        = "./Networking/vpc-peering"
+  source                        = "./Modules/Networking/vpc-peering"
   hybrid-vpc                    = "extra-hybrid-connectivity-vpc"
   extra-business-vpc             = "extra-business-vpc"
   extra-health-vpc               = "extra-health-vpc"
