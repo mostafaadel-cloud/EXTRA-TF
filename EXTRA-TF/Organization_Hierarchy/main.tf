@@ -10,40 +10,40 @@
 
 #################################################### FOLDERS #################################################################
 resource "google_folder" "monitoring_folder" {
-  display_name = "EX-Monitoring-Folder"
+  display_name = "EX-Monitoring"
   parent       = "organizations/${var.org_id}"
 }
 
 resource "google_folder" "terraform_folder" {
-  display_name = "EX-TERRAFORM-Folder"
+  display_name = "EX-TERRAFORM"
   parent       = "organizations/${var.org_id}"
 }
 
 resource "google_folder" "infrastructure_folder" {
-  display_name = "EX-Infrastructure-Folder"
+  display_name = "EX-Infrastructure"
   parent       = "organizations/${var.org_id}"
 }
 
 resource "google_folder" "network_folder" {
-  display_name = "EX-Network-Folder"
+  display_name = "EX-Network"
   parent       = "organizations/${var.org_id}"
 }
 
 resource "google_folder" "operational_services_folder" {
-  display_name = "Ex-Operational-Services-Folder"
+  display_name = "Ex-Operational-Services"
   parent       = "organizations/${var.org_id}"
 }
 
 resource "google_folder" "cyber_folder" {
-  display_name = "EX-Cyber-Folder"
+  display_name = "EX-Cyber"
   parent       = "organizations/${var.org_id}"
 }
 
 resource "google_folder" "datalake_folder" {
-  display_name = "EX-DataLake-Folder"
+  display_name = "EX-DataLake"
   parent       = "organizations/${var.org_id}"
 }
-
+# EX-MONTORING-Montoring
 ########################################## Projects under Health Folder ########################################################################
 
 resource "google_project" "med_pr_project" {
