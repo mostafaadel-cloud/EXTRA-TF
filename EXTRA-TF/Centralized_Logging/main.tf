@@ -24,13 +24,6 @@ resource "google_logging_organization_sink" "org_sink" {
 #===============================================================================================================================
 #===============================================================================================================================
 
-resource "google_logging_project_sink" "monitoring_project" {
-  name   = "monitoring-project-sink"
-  description = "Monitoring Project Sink"
-  project = var.monitoring_project
-  destination = "logging.googleapis.com/projects/${var.monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
-}
-
 resource "google_logging_project_sink" "network_project" {
   name   = "network-project-sink"
   description = "Network Project Sink"
@@ -108,7 +101,6 @@ resource "google_project_iam_binding" "log_Writer" {
   members = [
     google_logging_organization_sink.org_sink.writer_identity,
     
-    google_logging_project_sink.monitoring_project.writer_identity,
     google_logging_project_sink.network_project.writer_identity,
     google_logging_project_sink.operational_services_project.writer_identity,
     google_logging_project_sink.infra_linux_qa_project.writer_identity,
@@ -127,7 +119,6 @@ resource "google_project_iam_binding" "bucket_Writer" {
   members = [
     google_logging_organization_sink.org_sink.writer_identity,
     
-    google_logging_project_sink.monitoring_project.writer_identity,
     google_logging_project_sink.network_project.writer_identity,
     google_logging_project_sink.operational_services_project.writer_identity,
     google_logging_project_sink.infra_linux_qa_project.writer_identity,
@@ -146,15 +137,14 @@ resource "google_project_iam_binding" "bucket_Writer" {
 # Metrics Scope 
 locals {
   metric_scopes = {
-    network      = var.infra_linux_qa_project
-    # monitoring_project   = var.monitoring_project
-    network_project   = var.network_project
-    operational_services_project   = var.operational_services_project
-    infra_linux_qa_project   = var.infra_linux_qa_project
-    infra_linux_prd_project   = var.infra_linux_prd_project
-    infra_linux_tsr_project   = var.infra_linux_tsr_project
-    operational_services_project   = var.operational_services_project
-    datalake_prod_prod_project   = var.datalake_prod_prod_project
+    network_project               = var.network_project
+    operational_services_project  = var.operational_services_project
+    infra_linux_qa_project        = var.infra_linux_qa_project
+    infra_linux_prd_project       = var.infra_linux_prd_project
+    infra_linux_dr_project        = var.infra_linux_dr_project
+    infra_linux_tsr_project       = var.infra_linux_tsr_project
+    datalake_cmn_iac_project      = var.datalake_cmn_iac_project
+    datalake_prod_prod_project    = var.datalake_prod_prod_project
   }
 }
 
