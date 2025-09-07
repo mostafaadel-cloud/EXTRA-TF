@@ -43,7 +43,29 @@ resource "google_folder" "datalake_folder" {
   display_name = "EX-DataLake"
   parent       = "organizations/${var.org_id}"
 }
-# EX-MONTORING-Montoring
+# @@ Check subfolder syntax from official docs
+#################################################### SUB-FOLDERS #################################################################
+
+resource "google_folder" "infra_linux_subfolder" {
+  display_name = "EX-INFRA-Linux"
+  parent       = google_folder.infrastructure_folder.id
+}
+
+resource "google_folder" "infra_windows_subfolder" {
+  display_name = "EX-INFRA-Windows"
+  parent       = google_folder.infrastructure_folder.id
+}
+
+resource "google_folder" "datalake_cmn_subfolder" {
+  display_name = "EX-Datalake-CMN"
+  parent       = google_folder.datalake_folder.id
+}
+
+resource "google_folder" "datalink_prod_subfolder" {
+  display_name = "EX-Datalake-Prod"
+  parent       = google_folder.datalake_folder.id
+}
+
 ########################################## Projects under Monitoring Folder ########################################################################
 
 resource "google_project" "monitoring_project" {
@@ -52,45 +74,55 @@ resource "google_project" "monitoring_project" {
   folder_id       = google_folder.monitoring_folder.id
   billing_account = var.billing_account
 }
-# EX-Network-NW
+
 #################################### Projects under Network Folder ########################################################################
 
-resource "google_project" "network_project" {
+resource "google_project" "infra_linux_qa_project" {
   name       = "EX-Network-NW"
   project_id = "ex-network-nw"
-  folder_id  = google_folder.terraform_folder.id
+  folder_id  = google_folder.network_folder.id
   billing_account = var.billing_account
 }
-# Ex-Operational-Services
+
 #################################### Projects under Operational Services Folder ########################################################################
 
 resource "google_project" "operational_services_project" {
   name       = "Ex-Operational-Services"
   project_id = "ex-operational-services"
-  folder_id  = google_folder.infrastructure_folder.id
+  folder_id  = google_folder.operational_services_folder.id
   billing_account = var.billing_account
 }
 
-resource "google_project" "bus_dev_project" {
-  name       = "extra-BUS-Dev-Project"
-  project_id = "extra-bus-dev-project"
-  folder_id  = google_folder.infrastructure_folder.id
+#################################### Projects under INFRA Linux Subfolder ########################################################################
+
+resource "google_project" "infra_linux_qa_project" {
+  name       = "EX-INFRA-LINUX-QA"
+  project_id = "ex-infra-linux-qa"
+  folder_id  = google_folder.infra_linux_subfolder.id
   billing_account = var.billing_account
 }
 
-resource "google_project" "bus_test_project" {
-  name       = "extra-BUS-Test-Project"
-  project_id = "extra-bus-test-project"
-  folder_id  = google_folder.infrastructure_folder.id
+# Add missing References
+resource "google_project" "infra_linux_prd_project" {
+  name       = "EX-INFRA-LINUX-PRD"
+  project_id = "ex-infra-linux-prd"
+  folder_id  = google_folder.infra_linux_subfolder.id
   billing_account = var.billing_account
 }
 
-#################################### Network Project ########################################################################
+# Add missing References
+resource "google_project" "infra_linux_dr_project" {
+  name       = "EX-INFRA-LINUX-DR"
+  project_id = "ex-infra-linux-dr"
+  folder_id  = google_folder.infra_linux_subfolder.id
+  billing_account = var.billing_account
+}
 
-resource "google_project" "network_project" {
-  name       = "extra-Networking-Project"
-  project_id = "extra-networking-project"
-  folder_id  = google_folder.network_folder.id
+# Add missing References
+resource "google_project" "infra_linux_tsr_project" {
+  name       = "EX-INFRA-LINUX-TSR"
+  project_id = "ex-infra-linux-tsr"
+  folder_id  = google_folder.infra_linux_subfolder.id
   billing_account = var.billing_account
 }
 
@@ -103,3 +135,12 @@ resource "google_project" "logging_and_monitoring_project" {
   billing_account = var.billing_account
 }
       
+resource "google_folder" "parent_folder" {
+  display_name = "ParentFolder"
+  parent       = "organizations/your_organization_id" # Replace with your organization ID
+}
+
+resource "google_folder" "child_folder" {
+  display_name = "ChildFolder"
+  parent       = google_folder.parent_folder.id # References the ID of the newly created parent folder
+}

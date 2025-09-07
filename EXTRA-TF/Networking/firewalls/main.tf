@@ -2,7 +2,7 @@
 resource "google_compute_firewall" "allow_ssh_and_hhtp_https_for_rackware" {
   name        = "allow-access-rackware"
   network     = "extra-education-vpc"
-  project     = var.network_project
+  project     = var.infra_linux_qa_project
   priority    = 1000
   direction   = "INGRESS"
   source_tags = ["rackware"]
@@ -19,7 +19,7 @@ resource "google_compute_firewall" "allow_peers_to_hybrid" {
   name    = "allow-peers-to-hybrid"
   network = var.hybrid-vpc
 
-  project = var.network_project
+  project = var.infra_linux_qa_project
 
   direction = "INGRESS"
   priority  = 1000
@@ -44,7 +44,7 @@ resource "google_compute_firewall" "allow_hybrid_to_business" {
   name    = "allow-hybrid-to-business"
   network = var.extra-business-vpc
 
-  project = var.network_project
+  project = var.infra_linux_qa_project
 
   direction = "INGRESS"
   priority  = 1000
@@ -62,7 +62,7 @@ resource "google_compute_firewall" "allow_hybrid_to_health" {
   name    = "allow-hybrid-to-health"
   network = var.extra-health-vpc
 
-  project = var.network_project
+  project = var.infra_linux_qa_project
 
   direction = "INGRESS"
   priority  = 1000
@@ -80,7 +80,7 @@ resource "google_compute_firewall" "allow_hybrid_to_education" {
   name    = "allow-hybrid-to-education"
   network = var.extra-education-vpc
 
-  project = var.network_project
+  project = var.infra_linux_qa_project
 
   direction = "INGRESS"
   priority  = 1000
@@ -98,7 +98,7 @@ resource "google_compute_firewall" "allow_hybrid_to_trusted_hub" {
   name    = "allow-hybrid-to-trusted-hub"
   network = var.extra-trusted-hub-vpc
 
-  project = var.network_project
+  project = var.infra_linux_qa_project
 
   direction = "INGRESS"
   priority  = 1000
@@ -116,7 +116,7 @@ resource "google_compute_firewall" "allow_hybrid_to_untrusted_hub" {
   name    = "allow-hybrid-to-untrusted-hub"
   network = var.extra-untrusted-hub-vpc
 
-  project = var.network_project
+  project = var.infra_linux_qa_project
 
   direction = "INGRESS"
   priority  = 1000
@@ -134,7 +134,7 @@ resource "google_compute_firewall" "allow_hybrid_to_managment" {
   name    = "allow-hybrid-to-managment"
   network = var.extra-managment-vpc
 
-  project = var.network_project
+  project = var.infra_linux_qa_project
 
   direction = "INGRESS"
   priority  = 1000
@@ -168,7 +168,7 @@ resource "google_compute_firewall" "allow_hybrid_to_managment" {
 #   name    = "allow-${each.key}-to-hybrid"
 #   network = var.hybrid-vpc
 
-#   project = var.network_project
+#   project = var.infra_linux_qa_project
 
 #   direction = "INGRESS"
 #   priority  = 1000
@@ -187,7 +187,7 @@ resource "google_compute_firewall" "allow_hybrid_to_managment" {
 #   name    = "allow-hybrid-to-${each.key}"
 #   network = each.key
 
-#   project = var.network_project
+#   project = var.infra_linux_qa_project
 
 #   direction = "INGRESS"
 #   priority  = 1000

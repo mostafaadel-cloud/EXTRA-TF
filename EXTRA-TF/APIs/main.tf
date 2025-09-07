@@ -1,13 +1,13 @@
 locals {
-  network_project_APIs = ["cloudresourcemanager.googleapis.com","servicenetworking.googleapis.com", "compute.googleapis.com", "iam.googleapis.com", "logging.googleapis.com"]
+  infra_linux_qa_project_APIs = ["cloudresourcemanager.googleapis.com","servicenetworking.googleapis.com", "compute.googleapis.com", "iam.googleapis.com", "logging.googleapis.com"]
      
   logging_project_APIs = ["cloudresourcemanager.googleapis.com","iam.googleapis.com", "logging.googleapis.com","monitoring.googleapis.com"]
 
 }
 
- resource "google_project_service" "network_project_APIs" {
-  project            = var.network_project
-  for_each           = toset(local.network_project_APIs)
+ resource "google_project_service" "infra_linux_qa_project_APIs" {
+  project            = var.infra_linux_qa_project
+  for_each           = toset(local.infra_linux_qa_project_APIs)
   service            = each.key
   disable_on_destroy = false
 }

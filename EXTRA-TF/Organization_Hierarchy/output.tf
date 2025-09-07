@@ -33,8 +33,8 @@ output "med_test_project" {
   value = google_project.med_test_project.project_id
 }
 
-output "network_project" {
-  value = google_project.network_project.project_id
+output "infra_linux_qa_project" {
+  value = google_project.infra_linux_qa_project.project_id
 }
 
 output "edu_dev_project" {
@@ -57,8 +57,8 @@ output "bus_test_project" {
   value = google_project.bus_test_project.project_id
 }
 
-output "network_project" {
-  value = google_project.network_project.project_id
+output "infra_linux_qa_project" {
+  value = google_project.infra_linux_qa_project.project_id
 }
 
 output "logging_and_monitoring_project" {

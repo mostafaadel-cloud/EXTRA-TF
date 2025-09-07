@@ -49,7 +49,7 @@ module "Org_Hierarcy" {
 
 module "VPCs" {
   source      = "./Networking/VPCs"
-  project_id  = module.Org_Hierarcy.network_project
+  project_id  = module.Org_Hierarcy.infra_linux_qa_project
   vpc_configs = var.vpc_configs
 }
 
@@ -58,14 +58,14 @@ module "VPCs" {
 # @@ Change app projects
 module "APIs" {
   source                         = "./APIs"
-  network_project                = module.Org_Hierarcy.network_project
+  infra_linux_qa_project                = module.Org_Hierarcy.infra_linux_qa_project
   logging_and_monitoring_project = module.Org_Hierarcy.logging_and_monitoring_project
 
   application_projects = toset([
     module.Org_Hierarcy.monitoring_project,
     module.Org_Hierarcy.med_dev_project,
     module.Org_Hierarcy.med_test_project,
-    module.Org_Hierarcy.network_project,
+    module.Org_Hierarcy.infra_linux_qa_project,
     module.Org_Hierarcy.edu_dev_project,
     module.Org_Hierarcy.edu_test_project,
     module.Org_Hierarcy.operational_services_project,
@@ -84,11 +84,11 @@ module "Centralized_Logging" {
   org_id                         = local.org_id
   logging_and_monitoring_project = module.Org_Hierarcy.logging_and_monitoring_project
   location                       = local.region
-  network_project                = module.Org_Hierarcy.network_project
+  infra_linux_qa_project                = module.Org_Hierarcy.infra_linux_qa_project
   monitoring_project                 = module.Org_Hierarcy.monitoring_project
   med_dev_project                = module.Org_Hierarcy.med_dev_project
   med_test_project               = module.Org_Hierarcy.med_test_project
-  network_project                 = module.Org_Hierarcy.network_project
+  infra_linux_qa_project                 = module.Org_Hierarcy.infra_linux_qa_project
   edu_dev_project                = module.Org_Hierarcy.edu_dev_project
   edu_test_project               = module.Org_Hierarcy.edu_test_project
   operational_services_project                 = module.Org_Hierarcy.operational_services_project
@@ -107,13 +107,13 @@ module "iam_runner" {
     module.Org_Hierarcy.monitoring_project,
     module.Org_Hierarcy.med_dev_project,
     module.Org_Hierarcy.med_test_project,
-    module.Org_Hierarcy.network_project,
+    module.Org_Hierarcy.infra_linux_qa_project,
     module.Org_Hierarcy.edu_dev_project,
     module.Org_Hierarcy.edu_test_project,
     module.Org_Hierarcy.operational_services_project,
     module.Org_Hierarcy.bus_dev_project,
     module.Org_Hierarcy.bus_test_project,
-    module.Org_Hierarcy.network_project,
+    module.Org_Hierarcy.infra_linux_qa_project,
   ])
   scoping_project = module.Org_Hierarcy.logging_and_monitoring_project
 }
@@ -123,8 +123,8 @@ module "iam_runner" {
 
 module "Shared_VPC" {
   source          = "./Networking/shared vpc"
-  network_project = module.Org_Hierarcy.network_project
-  network_project  = module.Org_Hierarcy.network_project
+  infra_linux_qa_project = module.Org_Hierarcy.infra_linux_qa_project
+  infra_linux_qa_project  = module.Org_Hierarcy.infra_linux_qa_project
   depends_on      = [module.APIs]
 }
 
@@ -133,7 +133,7 @@ module "Shared_VPC" {
 # @@ Change VPCs
 module "firewalls" {
   source          = "./Networking/firewalls"
-  network_project = module.Org_Hierarcy.network_project
+  infra_linux_qa_project = module.Org_Hierarcy.infra_linux_qa_project
   hybrid-vpc                    = "extra-hybrid-connectivity-vpc"
   extra-business-vpc             = "extra-business-vpc"
   extra-health-vpc               = "extra-health-vpc"

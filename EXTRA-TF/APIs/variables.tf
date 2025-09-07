@@ -1,5 +1,5 @@
-variable "network_project" {
-  description = "network_project"
+variable "infra_linux_qa_project" {
+  description = "infra_linux_qa_project"
   type = string
 }
 

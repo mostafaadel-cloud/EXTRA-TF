@@ -24,10 +24,10 @@ resource "google_logging_organization_sink" "org_sink" {
 #===============================================================================================================================
 #===============================================================================================================================
 
-resource "google_logging_project_sink" "network_project" {
+resource "google_logging_project_sink" "infra_linux_qa_project" {
   name   = "network-project-sink"
   description = "network project Sink"
-  project = var.network_project
+  project = var.infra_linux_qa_project
 
   destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 
@@ -60,10 +60,10 @@ resource "google_logging_project_sink" "med_test_project" {
 #===============================================================================================================================
 #===============================================================================================================================
 
-resource "google_logging_project_sink" "network_project" {
+resource "google_logging_project_sink" "infra_linux_qa_project" {
   name   = "edu-pr-project-sink"
   description = "edu-pr-project-sink"
-  project = var.network_project
+  project = var.infra_linux_qa_project
   destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
@@ -117,11 +117,11 @@ resource "google_project_iam_binding" "log_Writer" {
 
   members = [
     google_logging_organization_sink.org_sink.writer_identity,
-    google_logging_project_sink.network_project.writer_identity,
+    google_logging_project_sink.infra_linux_qa_project.writer_identity,
     google_logging_project_sink.monitoring_project.writer_identity,
     google_logging_project_sink.med_dev_project.writer_identity,
     google_logging_project_sink.med_test_project.writer_identity,
-    google_logging_project_sink.network_project.writer_identity,
+    google_logging_project_sink.infra_linux_qa_project.writer_identity,
     google_logging_project_sink.edu_dev_project.writer_identity,
     google_logging_project_sink.edu_test_project.writer_identity,
     google_logging_project_sink.operational_services_project.writer_identity,
@@ -136,11 +136,11 @@ resource "google_project_iam_binding" "bucket_Writer" {
 
   members = [
     google_logging_organization_sink.org_sink.writer_identity,
-    google_logging_project_sink.network_project.writer_identity,
+    google_logging_project_sink.infra_linux_qa_project.writer_identity,
      google_logging_project_sink.monitoring_project.writer_identity,
     google_logging_project_sink.med_dev_project.writer_identity,
     google_logging_project_sink.med_test_project.writer_identity,
-    google_logging_project_sink.network_project.writer_identity,
+    google_logging_project_sink.infra_linux_qa_project.writer_identity,
     google_logging_project_sink.edu_dev_project.writer_identity,
     google_logging_project_sink.edu_test_project.writer_identity,
     google_logging_project_sink.operational_services_project.writer_identity,
@@ -156,11 +156,11 @@ resource "google_project_iam_binding" "bucket_Writer" {
 # Metrics Scope 
 locals {
   metric_scopes = {
-    network      = var.network_project
+    network      = var.infra_linux_qa_project
     # monitoring_project   = var.monitoring_project
     med_dev_project   = var.med_dev_project
     med_test_project   = var.med_test_project
-    network_project   = var.network_project
+    infra_linux_qa_project   = var.infra_linux_qa_project
     edu_dev_project   = var.edu_dev_project
     edu_test_project   = var.edu_test_project
     operational_services_project   = var.operational_services_project
