@@ -26,11 +26,11 @@ variable "monitoring_project" {
   type        = string
 }
 
-variable "med_dev_project" {
+variable "network_project" {
   type        = string
 }
 
-variable "med_test_project" {
+variable "operational_services_project" {
   type        = string
 }
 
@@ -41,11 +41,11 @@ variable "infra_linux_qa_project" {
   type        = string
 }
 
-variable "edu_dev_project" {
+variable "infra_linux_prd_project" {
   type        = string
 }
 
-variable "edu_test_project" {
+variable "infra_linux_tsr_project" {
   type        = string
 }
 
@@ -56,7 +56,7 @@ variable "operational_services_project" {
   type        = string
 }
 
-variable "bus_dev_project" {
+variable "datalake_prod_prod_project" {
   type        = string
 }
 

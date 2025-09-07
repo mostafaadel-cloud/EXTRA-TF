@@ -43,7 +43,7 @@ resource "google_folder" "datalake_folder" {
   display_name = "EX-DataLake"
   parent       = "organizations/${var.org_id}"
 }
-# @@ Check subfolder syntax from official docs
+
 #################################################### SUB-FOLDERS #################################################################
 
 resource "google_folder" "infra_linux_subfolder" {
@@ -76,8 +76,8 @@ resource "google_project" "monitoring_project" {
 }
 
 #################################### Projects under Network Folder ########################################################################
-
-resource "google_project" "infra_linux_qa_project" {
+# @@ Add missing References
+resource "google_project" "network_project" {
   name       = "EX-Network-NW"
   project_id = "ex-network-nw"
   folder_id  = google_folder.network_folder.id
@@ -125,8 +125,7 @@ resource "google_project" "infra_linux_tsr_project" {
   folder_id  = google_folder.infra_linux_subfolder.id
   billing_account = var.billing_account
 }
-# EX-Datalake-CMN-IAC
-# EX-Datalake-Prod-PROD
+
 #################################### Projects under Datalake CMN Subfolder ########################################################################
 
 resource "google_project" "datalake_cmn_iac_project" {

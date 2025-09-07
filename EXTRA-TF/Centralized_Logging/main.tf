@@ -43,17 +43,17 @@ resource "google_logging_project_sink" "monitoring_project" {
   destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
-resource "google_logging_project_sink" "med_dev_project" {
+resource "google_logging_project_sink" "network_project" {
   name   = "med-dev-project-sink"
   description = "med-dev-project-sink"
-  project = var.med_dev_project
+  project = var.network_project
   destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
-resource "google_logging_project_sink" "med_test_project" {
+resource "google_logging_project_sink" "operational_services_project" {
   name   = "med-test-project-sink"
   description = "med-test-project-sink"
-  project = var.med_test_project
+  project = var.operational_services_project
   destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
@@ -67,17 +67,17 @@ resource "google_logging_project_sink" "infra_linux_qa_project" {
   destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
-resource "google_logging_project_sink" "edu_dev_project" {
+resource "google_logging_project_sink" "infra_linux_prd_project" {
   name   = "edu-dev-project-sink"
   description = "edu-dev-project-sink"
-  project = var.edu_dev_project
+  project = var.infra_linux_prd_project
   destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
-resource "google_logging_project_sink" "edu_test_project" {
+resource "google_logging_project_sink" "infra_linux_tsr_project" {
   name   = "edu-test-project-sink"
   description = "edu-test-project-sink"
-  project = var.edu_test_project
+  project = var.infra_linux_tsr_project
   destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
@@ -92,10 +92,10 @@ resource "google_logging_project_sink" "operational_services_project" {
 }
 
 
-resource "google_logging_project_sink" "bus_dev_project" {
+resource "google_logging_project_sink" "datalake_prod_prod_project" {
   name   = "bus-dev-project-sink"
   description = "bus-dev-project-sink"
-  project = var.bus_dev_project
+  project = var.datalake_prod_prod_project
   destination = "logging.googleapis.com/projects/${var.datalake_cmn_iac_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
@@ -119,13 +119,13 @@ resource "google_project_iam_binding" "log_Writer" {
     google_logging_organization_sink.org_sink.writer_identity,
     google_logging_project_sink.infra_linux_qa_project.writer_identity,
     google_logging_project_sink.monitoring_project.writer_identity,
-    google_logging_project_sink.med_dev_project.writer_identity,
-    google_logging_project_sink.med_test_project.writer_identity,
-    google_logging_project_sink.infra_linux_qa_project.writer_identity,
-    google_logging_project_sink.edu_dev_project.writer_identity,
-    google_logging_project_sink.edu_test_project.writer_identity,
+    google_logging_project_sink.network_project.writer_identity,
     google_logging_project_sink.operational_services_project.writer_identity,
-    google_logging_project_sink.bus_dev_project.writer_identity,
+    google_logging_project_sink.infra_linux_qa_project.writer_identity,
+    google_logging_project_sink.infra_linux_prd_project.writer_identity,
+    google_logging_project_sink.infra_linux_tsr_project.writer_identity,
+    google_logging_project_sink.operational_services_project.writer_identity,
+    google_logging_project_sink.datalake_prod_prod_project.writer_identity,
     google_logging_project_sink.bus_test_project.writer_identity,
   ]
 }
@@ -138,13 +138,13 @@ resource "google_project_iam_binding" "bucket_Writer" {
     google_logging_organization_sink.org_sink.writer_identity,
     google_logging_project_sink.infra_linux_qa_project.writer_identity,
      google_logging_project_sink.monitoring_project.writer_identity,
-    google_logging_project_sink.med_dev_project.writer_identity,
-    google_logging_project_sink.med_test_project.writer_identity,
-    google_logging_project_sink.infra_linux_qa_project.writer_identity,
-    google_logging_project_sink.edu_dev_project.writer_identity,
-    google_logging_project_sink.edu_test_project.writer_identity,
+    google_logging_project_sink.network_project.writer_identity,
     google_logging_project_sink.operational_services_project.writer_identity,
-    google_logging_project_sink.bus_dev_project.writer_identity,
+    google_logging_project_sink.infra_linux_qa_project.writer_identity,
+    google_logging_project_sink.infra_linux_prd_project.writer_identity,
+    google_logging_project_sink.infra_linux_tsr_project.writer_identity,
+    google_logging_project_sink.operational_services_project.writer_identity,
+    google_logging_project_sink.datalake_prod_prod_project.writer_identity,
     google_logging_project_sink.bus_test_project.writer_identity,
   ]
 }
@@ -158,13 +158,13 @@ locals {
   metric_scopes = {
     network      = var.infra_linux_qa_project
     # monitoring_project   = var.monitoring_project
-    med_dev_project   = var.med_dev_project
-    med_test_project   = var.med_test_project
-    infra_linux_qa_project   = var.infra_linux_qa_project
-    edu_dev_project   = var.edu_dev_project
-    edu_test_project   = var.edu_test_project
+    network_project   = var.network_project
     operational_services_project   = var.operational_services_project
-    bus_dev_project   = var.bus_dev_project
+    infra_linux_qa_project   = var.infra_linux_qa_project
+    infra_linux_prd_project   = var.infra_linux_prd_project
+    infra_linux_tsr_project   = var.infra_linux_tsr_project
+    operational_services_project   = var.operational_services_project
+    datalake_prod_prod_project   = var.datalake_prod_prod_project
     bus_test_project   = var.bus_test_project
   }
 }

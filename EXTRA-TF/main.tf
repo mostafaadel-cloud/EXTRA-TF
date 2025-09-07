@@ -63,13 +63,13 @@ module "APIs" {
 
   application_projects = toset([
     module.Org_Hierarcy.monitoring_project,
-    module.Org_Hierarcy.med_dev_project,
-    module.Org_Hierarcy.med_test_project,
-    module.Org_Hierarcy.infra_linux_qa_project,
-    module.Org_Hierarcy.edu_dev_project,
-    module.Org_Hierarcy.edu_test_project,
+    module.Org_Hierarcy.network_project,
     module.Org_Hierarcy.operational_services_project,
-    module.Org_Hierarcy.bus_dev_project,
+    module.Org_Hierarcy.infra_linux_qa_project,
+    module.Org_Hierarcy.infra_linux_prd_project,
+    module.Org_Hierarcy.infra_linux_tsr_project,
+    module.Org_Hierarcy.operational_services_project,
+    module.Org_Hierarcy.datalake_prod_prod_project,
     module.Org_Hierarcy.bus_test_project,
   ])
 
@@ -86,13 +86,13 @@ module "Centralized_Logging" {
   location                       = local.region
   infra_linux_qa_project                = module.Org_Hierarcy.infra_linux_qa_project
   monitoring_project                 = module.Org_Hierarcy.monitoring_project
-  med_dev_project                = module.Org_Hierarcy.med_dev_project
-  med_test_project               = module.Org_Hierarcy.med_test_project
+  network_project                = module.Org_Hierarcy.network_project
+  operational_services_project               = module.Org_Hierarcy.operational_services_project
   infra_linux_qa_project                 = module.Org_Hierarcy.infra_linux_qa_project
-  edu_dev_project                = module.Org_Hierarcy.edu_dev_project
-  edu_test_project               = module.Org_Hierarcy.edu_test_project
+  infra_linux_prd_project                = module.Org_Hierarcy.infra_linux_prd_project
+  infra_linux_tsr_project               = module.Org_Hierarcy.infra_linux_tsr_project
   operational_services_project                 = module.Org_Hierarcy.operational_services_project
-  bus_dev_project                = module.Org_Hierarcy.bus_dev_project
+  datalake_prod_prod_project                = module.Org_Hierarcy.datalake_prod_prod_project
   bus_test_project               = module.Org_Hierarcy.bus_test_project
   depends_on                     = [module.VPCs, module.APIs]
 }
@@ -105,13 +105,13 @@ module "iam_runner" {
   runner_sa = "971573762455-compute@developer.gserviceaccount.com"
   application_projects = toset([
     module.Org_Hierarcy.monitoring_project,
-    module.Org_Hierarcy.med_dev_project,
-    module.Org_Hierarcy.med_test_project,
-    module.Org_Hierarcy.infra_linux_qa_project,
-    module.Org_Hierarcy.edu_dev_project,
-    module.Org_Hierarcy.edu_test_project,
+    module.Org_Hierarcy.network_project,
     module.Org_Hierarcy.operational_services_project,
-    module.Org_Hierarcy.bus_dev_project,
+    module.Org_Hierarcy.infra_linux_qa_project,
+    module.Org_Hierarcy.infra_linux_prd_project,
+    module.Org_Hierarcy.infra_linux_tsr_project,
+    module.Org_Hierarcy.operational_services_project,
+    module.Org_Hierarcy.datalake_prod_prod_project,
     module.Org_Hierarcy.bus_test_project,
     module.Org_Hierarcy.infra_linux_qa_project,
   ])
