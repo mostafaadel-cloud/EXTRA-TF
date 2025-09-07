@@ -143,3 +143,13 @@ resource "google_project" "datalake_prod_prod_project" {
   folder_id  = google_folder.datalake_cmn_subfolder.id
   billing_account = var.billing_account
 }
+
+# monitoring_project
+# network_project
+# operational_services_project
+# infra_linux_qa_project
+# infra_linux_prd_project
+# infra_linux_dr_project
+# infra_linux_tsr_project
+# datalake_cmn_iac_project
+# datalake_prod_prod_project

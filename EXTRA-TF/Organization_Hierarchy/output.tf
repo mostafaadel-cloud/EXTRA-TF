@@ -79,7 +79,6 @@ output "datalake_cmn_iac_project" {
   value = google_project.datalake_cmn_iac_project.project_id
 }
 
-
 output "datalake_prod_prod_project" {
   value = google_project.datalake_prod_prod_project.project_id
 }

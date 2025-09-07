@@ -80,21 +80,19 @@ module "APIs" {
 #===============================================================================================================================
 # @@ Change app projects
 module "Centralized_Logging" {
-  source                         = "./Centralized_Logging"
-  org_id                         = local.org_id
-  datalake_cmn_iac_project = module.Org_Hierarcy.datalake_cmn_iac_project
-  location                       = local.region
-  infra_linux_qa_project                = module.Org_Hierarcy.infra_linux_qa_project
-  monitoring_project                 = module.Org_Hierarcy.monitoring_project
-  network_project                = module.Org_Hierarcy.network_project
-  operational_services_project               = module.Org_Hierarcy.operational_services_project
-  infra_linux_qa_project                 = module.Org_Hierarcy.infra_linux_qa_project
-  infra_linux_prd_project                = module.Org_Hierarcy.infra_linux_prd_project
-  infra_linux_tsr_project               = module.Org_Hierarcy.infra_linux_tsr_project
-  operational_services_project                 = module.Org_Hierarcy.operational_services_project
-  datalake_prod_prod_project                = module.Org_Hierarcy.datalake_prod_prod_project
-  bus_test_project               = module.Org_Hierarcy.bus_test_project
-  depends_on                     = [module.VPCs, module.APIs]
+  source                          = "./Centralized_Logging"
+  org_id                          = local.org_id
+  location                        = local.region
+  monitoring_project              =  module.Org_Hierarcy.monitoring_project
+  network_project                 =  module.Org_Hierarcy.network_project
+  operational_services_project    =  module.Org_Hierarcy.operational_services_project
+  infra_linux_qa_project          =  module.Org_Hierarcy.infra_linux_qa_project
+  infra_linux_prd_project         =  module.Org_Hierarcy.infra_linux_prd_project
+  infra_linux_dr_project          =  module.Org_Hierarcy.infra_linux_dr_project
+  infra_linux_tsr_project         =  module.Org_Hierarcy.infra_linux_tsr_project
+  datalake_cmn_iac_project        =  module.Org_Hierarcy.datalake_cmn_iac_project
+  datalake_prod_prod_project      =  module.Org_Hierarcy.datalake_prod_prod_project
+  depends_on                      = [module.VPCs, module.APIs]
 }
 
 #===============================================================================================================================
@@ -109,11 +107,10 @@ module "iam_runner" {
     module.Org_Hierarcy.operational_services_project,
     module.Org_Hierarcy.infra_linux_qa_project,
     module.Org_Hierarcy.infra_linux_prd_project,
+    module.Org_Hierarcy.infra_linux_dr_project,
     module.Org_Hierarcy.infra_linux_tsr_project,
-    module.Org_Hierarcy.operational_services_project,
+    module.Org_Hierarcy.datalake_cmn_iac_project,
     module.Org_Hierarcy.datalake_prod_prod_project,
-    module.Org_Hierarcy.bus_test_project,
-    module.Org_Hierarcy.infra_linux_qa_project,
   ])
   scoping_project = module.Org_Hierarcy.datalake_cmn_iac_project
 }
