@@ -1,11 +1,11 @@
-variable "infra_linux_qa_project" {
-  description = "infra_linux_qa_project"
+variable "network_project" {
+  description = "Network Project"
   type = string
 }
 
 
-variable "datalake_cmn_iac_project" {
-  description = "logging_project"
+variable "monitoring_project" {
+  description = "Monitoring Project"
   type = string
 }
 
