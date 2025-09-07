@@ -21,8 +21,8 @@ output "operational_services_folder" {
 
 ############################################################ Project #####################################################################
 
-output "med_pr_project" {
-  value = google_project.med_pr_project.project_id
+output "monitoring_project" {
+  value = google_project.monitoring_project.project_id
 }
 
 output "med_dev_project" {
@@ -33,8 +33,8 @@ output "med_test_project" {
   value = google_project.med_test_project.project_id
 }
 
-output "edu_pr_project" {
-  value = google_project.edu_pr_project.project_id
+output "network_project" {
+  value = google_project.network_project.project_id
 }
 
 output "edu_dev_project" {
@@ -45,8 +45,8 @@ output "edu_test_project" {
   value = google_project.edu_test_project.project_id
 }
 
-output "bus_pr_project" {
-  value = google_project.bus_pr_project.project_id
+output "operational_services_project" {
+  value = google_project.operational_services_project.project_id
 }
 
 output "bus_dev_project" {

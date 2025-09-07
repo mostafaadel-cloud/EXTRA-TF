@@ -62,13 +62,13 @@ module "APIs" {
   logging_and_monitoring_project = module.Org_Hierarcy.logging_and_monitoring_project
 
   application_projects = toset([
-    module.Org_Hierarcy.med_pr_project,
+    module.Org_Hierarcy.monitoring_project,
     module.Org_Hierarcy.med_dev_project,
     module.Org_Hierarcy.med_test_project,
-    module.Org_Hierarcy.edu_pr_project,
+    module.Org_Hierarcy.network_project,
     module.Org_Hierarcy.edu_dev_project,
     module.Org_Hierarcy.edu_test_project,
-    module.Org_Hierarcy.bus_pr_project,
+    module.Org_Hierarcy.operational_services_project,
     module.Org_Hierarcy.bus_dev_project,
     module.Org_Hierarcy.bus_test_project,
   ])
@@ -85,13 +85,13 @@ module "Centralized_Logging" {
   logging_and_monitoring_project = module.Org_Hierarcy.logging_and_monitoring_project
   location                       = local.region
   network_project                = module.Org_Hierarcy.network_project
-  med_pr_project                 = module.Org_Hierarcy.med_pr_project
+  monitoring_project                 = module.Org_Hierarcy.monitoring_project
   med_dev_project                = module.Org_Hierarcy.med_dev_project
   med_test_project               = module.Org_Hierarcy.med_test_project
-  edu_pr_project                 = module.Org_Hierarcy.edu_pr_project
+  network_project                 = module.Org_Hierarcy.network_project
   edu_dev_project                = module.Org_Hierarcy.edu_dev_project
   edu_test_project               = module.Org_Hierarcy.edu_test_project
-  bus_pr_project                 = module.Org_Hierarcy.bus_pr_project
+  operational_services_project                 = module.Org_Hierarcy.operational_services_project
   bus_dev_project                = module.Org_Hierarcy.bus_dev_project
   bus_test_project               = module.Org_Hierarcy.bus_test_project
   depends_on                     = [module.VPCs, module.APIs]
@@ -104,13 +104,13 @@ module "iam_runner" {
   source    = "./IAM"
   runner_sa = "971573762455-compute@developer.gserviceaccount.com"
   application_projects = toset([
-    module.Org_Hierarcy.med_pr_project,
+    module.Org_Hierarcy.monitoring_project,
     module.Org_Hierarcy.med_dev_project,
     module.Org_Hierarcy.med_test_project,
-    module.Org_Hierarcy.edu_pr_project,
+    module.Org_Hierarcy.network_project,
     module.Org_Hierarcy.edu_dev_project,
     module.Org_Hierarcy.edu_test_project,
-    module.Org_Hierarcy.bus_pr_project,
+    module.Org_Hierarcy.operational_services_project,
     module.Org_Hierarcy.bus_dev_project,
     module.Org_Hierarcy.bus_test_project,
     module.Org_Hierarcy.network_project,
@@ -124,7 +124,7 @@ module "iam_runner" {
 module "Shared_VPC" {
   source          = "./Networking/shared vpc"
   network_project = module.Org_Hierarcy.network_project
-  edu_pr_project  = module.Org_Hierarcy.edu_pr_project
+  network_project  = module.Org_Hierarcy.network_project
   depends_on      = [module.APIs]
 }
 

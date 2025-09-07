@@ -44,57 +44,29 @@ resource "google_folder" "datalake_folder" {
   parent       = "organizations/${var.org_id}"
 }
 # EX-MONTORING-Montoring
-########################################## Projects under Health Folder ########################################################################
+########################################## Projects under Monitoring Folder ########################################################################
 
-resource "google_project" "med_pr_project" {
-  name            = "extra-MED-PR-Project"
-  project_id      = "extra-med-pr-project"
+resource "google_project" "monitoring_project" {
+  name            = "EX-MONTORING-Montoring"
+  project_id      = "ex-montoring-montoring"
   folder_id       = google_folder.monitoring_folder.id
   billing_account = var.billing_account
 }
+# EX-Network-NW
+#################################### Projects under Network Folder ########################################################################
 
-resource "google_project" "med_dev_project" {
-  name            = "extra-MED-Dev-Project"
-  project_id      = "extra-med-dev-project"
-  folder_id       = google_folder.monitoring_folder.id
-  billing_account = var.billing_account
-}
-
-resource "google_project" "med_test_project" {
-  name       = "extra-MED-Test-Project"
-  project_id = "extra-med-test-project"
-  folder_id  = google_folder.monitoring_folder.id
-  billing_account = var.billing_account
-}
-
-#################################### Projects under Education Folder ########################################################################
-
-resource "google_project" "edu_pr_project" {
-  name       = "extra-EDU-PR-Project"
-  project_id = "extra-edu-pr-project"
+resource "google_project" "network_project" {
+  name       = "EX-Network-NW"
+  project_id = "ex-network-nw"
   folder_id  = google_folder.terraform_folder.id
   billing_account = var.billing_account
 }
+# Ex-Operational-Services
+#################################### Projects under Operational Services Folder ########################################################################
 
-resource "google_project" "edu_dev_project" {
-  name       = "extra-EDU-Dev-Project"
-  project_id = "extra-edu-dev-project"
-  folder_id  = google_folder.terraform_folder.id
-  billing_account = var.billing_account
-}
-
-resource "google_project" "edu_test_project" {
-  name       = "extra-EDU-Test-Project"
-  project_id = "extra-edu-test-project"
-  folder_id  = google_folder.terraform_folder.id
-  billing_account = var.billing_account
-}
-
-#################################### Projects under Business Folder ########################################################################
-
-resource "google_project" "bus_pr_project" {
-  name       = "extra-BUS-PR-Project"
-  project_id = "extra-bus-pr-project"
+resource "google_project" "operational_services_project" {
+  name       = "Ex-Operational-Services"
+  project_id = "ex-operational-services"
   folder_id  = google_folder.infrastructure_folder.id
   billing_account = var.billing_account
 }

@@ -36,10 +36,10 @@ resource "google_logging_project_sink" "network_project" {
 #===============================================================================================================================
 #===============================================================================================================================
 
-resource "google_logging_project_sink" "med_pr_project" {
+resource "google_logging_project_sink" "monitoring_project" {
   name   = "med-pr-project-sink"
   description = "med-pr-project-sink"
-  project = var.med_pr_project
+  project = var.monitoring_project
   destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
@@ -60,10 +60,10 @@ resource "google_logging_project_sink" "med_test_project" {
 #===============================================================================================================================
 #===============================================================================================================================
 
-resource "google_logging_project_sink" "edu_pr_project" {
+resource "google_logging_project_sink" "network_project" {
   name   = "edu-pr-project-sink"
   description = "edu-pr-project-sink"
-  project = var.edu_pr_project
+  project = var.network_project
   destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
@@ -84,10 +84,10 @@ resource "google_logging_project_sink" "edu_test_project" {
 #===============================================================================================================================
 #===============================================================================================================================
 
-resource "google_logging_project_sink" "bus_pr_project" {
+resource "google_logging_project_sink" "operational_services_project" {
   name   = "bus-pr-project-sink"
   description = "bus-pr-project-sink"
-  project = var.bus_pr_project
+  project = var.operational_services_project
   destination = "logging.googleapis.com/projects/${var.logging_and_monitoring_project}/locations/${var.location}/buckets/${google_logging_project_bucket_config.logging.bucket_id}"
 }
 
@@ -118,13 +118,13 @@ resource "google_project_iam_binding" "log_Writer" {
   members = [
     google_logging_organization_sink.org_sink.writer_identity,
     google_logging_project_sink.network_project.writer_identity,
-    google_logging_project_sink.med_pr_project.writer_identity,
+    google_logging_project_sink.monitoring_project.writer_identity,
     google_logging_project_sink.med_dev_project.writer_identity,
     google_logging_project_sink.med_test_project.writer_identity,
-    google_logging_project_sink.edu_pr_project.writer_identity,
+    google_logging_project_sink.network_project.writer_identity,
     google_logging_project_sink.edu_dev_project.writer_identity,
     google_logging_project_sink.edu_test_project.writer_identity,
-    google_logging_project_sink.bus_pr_project.writer_identity,
+    google_logging_project_sink.operational_services_project.writer_identity,
     google_logging_project_sink.bus_dev_project.writer_identity,
     google_logging_project_sink.bus_test_project.writer_identity,
   ]
@@ -137,13 +137,13 @@ resource "google_project_iam_binding" "bucket_Writer" {
   members = [
     google_logging_organization_sink.org_sink.writer_identity,
     google_logging_project_sink.network_project.writer_identity,
-     google_logging_project_sink.med_pr_project.writer_identity,
+     google_logging_project_sink.monitoring_project.writer_identity,
     google_logging_project_sink.med_dev_project.writer_identity,
     google_logging_project_sink.med_test_project.writer_identity,
-    google_logging_project_sink.edu_pr_project.writer_identity,
+    google_logging_project_sink.network_project.writer_identity,
     google_logging_project_sink.edu_dev_project.writer_identity,
     google_logging_project_sink.edu_test_project.writer_identity,
-    google_logging_project_sink.bus_pr_project.writer_identity,
+    google_logging_project_sink.operational_services_project.writer_identity,
     google_logging_project_sink.bus_dev_project.writer_identity,
     google_logging_project_sink.bus_test_project.writer_identity,
   ]
@@ -157,13 +157,13 @@ resource "google_project_iam_binding" "bucket_Writer" {
 locals {
   metric_scopes = {
     network      = var.network_project
-    # med_pr_project   = var.med_pr_project
+    # monitoring_project   = var.monitoring_project
     med_dev_project   = var.med_dev_project
     med_test_project   = var.med_test_project
-    edu_pr_project   = var.edu_pr_project
+    network_project   = var.network_project
     edu_dev_project   = var.edu_dev_project
     edu_test_project   = var.edu_test_project
-    bus_pr_project   = var.bus_pr_project
+    operational_services_project   = var.operational_services_project
     bus_dev_project   = var.bus_dev_project
     bus_test_project   = var.bus_test_project
   }
