@@ -48,9 +48,8 @@ module "Org_Hierarcy" {
 #===============================================================================================================================
 
 module "VPCs" {
-  source      = "./Modules/Networking/VPCs"
-  project_id  = module.Org_Hierarcy.infra_linux_qa_project
-  vpc_configs = var.vpc_configs
+  source      = "./Modules/Networking/vpc"
+  network_project =  module.Org_Hierarcy.network_project
 }
 
 #===============================================================================================================================
