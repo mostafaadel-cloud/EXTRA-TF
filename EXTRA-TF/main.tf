@@ -69,8 +69,7 @@ module "APIs" {
     module.Org_Hierarcy.infra_linux_prd_project,
     module.Org_Hierarcy.infra_linux_tsr_project,
     module.Org_Hierarcy.operational_services_project,
-    module.Org_Hierarcy.datalake_prod_prod_project,
-    module.Org_Hierarcy.bus_test_project,
+    module.Org_Hierarcy.datalake_prod_prod_project
   ])
 
   depends_on = [module.Org_Hierarcy]
@@ -80,9 +79,9 @@ module "APIs" {
 #===============================================================================================================================
 # @@ Change app projects
 module "Centralized_Logging" {
-  source                          = "./Centralized_Logging"
-  org_id                          = local.org_id
-  location                        = local.region
+  source                          =  "./Centralized_Logging"
+  org_id                          =  local.org_id
+  location                        =  local.region
   monitoring_project              =  module.Org_Hierarcy.monitoring_project
   network_project                 =  module.Org_Hierarcy.network_project
   operational_services_project    =  module.Org_Hierarcy.operational_services_project
@@ -121,7 +120,6 @@ module "iam_runner" {
 module "Shared_VPC" {
   source          = "./Networking/shared vpc"
   infra_linux_qa_project = module.Org_Hierarcy.infra_linux_qa_project
-  infra_linux_qa_project  = module.Org_Hierarcy.infra_linux_qa_project
   depends_on      = [module.APIs]
 }
 
